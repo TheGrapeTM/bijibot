@@ -13,12 +13,14 @@ from telegram.ext import (
 )
 import keys
 
+#  Port number for heroku webhook
+PORT = int(os.environ.get('PORT', 5000))
+
 #  Indicate that the bot has started
 print('Bot started...')
 
 #  Instantiate states for conversation handler
-PHOTO, LUB, TALK, ROUTE = map(chr, range(4))
-TALKING, STRESS, COMFORT, BORED, STOP = map(chr, range(4, 9))
+PHOTO, LUB, TALK, ROUTE, STRESS, COMFORT, BORED = range(7)
 
 #  Load data file
 with open('data.json') as json_file:
@@ -252,7 +254,14 @@ def main():
 
     dispatcher.add_handler(conv_handler)
 
-    updater.start_polling()
+    #  start polling removed for webhook
+    #  updater.start_polling()
+    updater.start_webhook(listen="0.0.0.0",
+                          port=int(PORT),
+                          url_path=keys.API_KEY)
+    updater.bot.setWebhook('https://lit-inlet-57214.herokuapp.com/' +
+                           keys.API_KEY)
+
     updater.idle()
 
 
