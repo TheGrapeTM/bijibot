@@ -12,9 +12,17 @@ from telegram.ext import (
     CallbackContext,
 )
 import keys
+import logging
+
+# Enable logging
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO)
+
+logger = logging.getLogger(__name__)
 
 #  Port number for heroku webhook
-PORT = int(os.environ.get('PORT', default=8443))
+PORT = int(os.environ.get('PORT', 5000))
 
 #  Indicate that the bot has started
 print('Bot started...')
