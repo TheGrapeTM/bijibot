@@ -14,7 +14,7 @@ from telegram.ext import (
 import keys
 
 #  Port number for heroku webhook
-PORT = int(os.environ.get('PORT', 5000))
+PORT = int(os.environ.get('PORT', default=8443))
 
 #  Indicate that the bot has started
 print('Bot started...')
