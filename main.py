@@ -256,11 +256,11 @@ def main():
 
     #  start polling removed for webhook
     #  updater.start_polling()
-    updater.start_webhook(listen="0.0.0.0",
-                          port=int(PORT),
-                          url_path=keys.API_KEY)
-    updater.bot.setWebhook('https://lit-inlet-57214.herokuapp.com/' +
-                           keys.API_KEY)
+    updater.start_webhook(
+        listen="0.0.0.0",
+        port=int(PORT),
+        url_path=keys.API_KEY,
+        webhook_url='https://lit-inlet-57214.herokuapp.com/' + keys.API_KEY)
 
     updater.idle()
 
